@@ -86,6 +86,6 @@ docker run --rm -p 80:80 \
 
 Sample(s) on how to add HTTPS and/or authentication above this image:
 
-* [HTTPS via Caddy automatic certificates](https://github.com/detche/docker-websvb/tree/master/samples/https)
-* [HTTPS + Authentication via Caddy, Caddy Security and Azure AD](https://github.com/detche/docker-websvb/tree/master/samples/auth-caddy-azure)
+* [HTTPS via Caddy automatic certificates](https://github.com/detche/docker-websvn/tree/master/samples/https)
+* [HTTPS + Authentication via Caddy, Caddy Security and Azure AD](https://github.com/detche/docker-websvn/tree/master/samples/auth-caddy-azure)
 
