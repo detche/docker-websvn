@@ -1,0 +1,36 @@
+diff '--color=auto' -ruN websvn/index.php after/index.php
+--- websvn/index.php	2023-03-01 21:26:09.419062120 +0100
++++ after/index.php	2023-03-01 21:55:06.255789486 +0100
+@@ -115,5 +115,8 @@
+ $vars['treeview'] = !$config->flatIndex;
+ $vars['opentree'] = $config->openTree;
+ $vars['groupcount'] = $groupcount; // Indicates whether any groups were present.
++$vars['abouttext'] = getenv('ABOUT_TEXT')
++    ? getenv('ABOUT_TEXT')
++    : 'Welcome to our SVN repositories.';
+ 
+ renderTemplate('index');
+diff '--color=auto' -ruN websvn/templates/calm/user_greeting.tmpl after/templates/calm/user_greeting.tmpl
+--- websvn/templates/calm/user_greeting.tmpl	2023-03-01 21:26:09.419062120 +0100
++++ after/templates/calm/user_greeting.tmpl	2023-03-01 21:23:10.245722525 +0100
+@@ -2,8 +2,7 @@
+       <h2>About</h2>
+       <dl>
+         <dd>
+-          You can customize this message in 'templates/calm/user_greeting.tmpl' to tell your
+-          visitors what they'll find in your repositories.
++          [websvn:abouttext]
+         </dd>
+         <dd>
+           Visit <a href="https://websvnphp.github.io">websvnphp.github.io</a> for more information
+diff '--color=auto' -ruN websvn/templates/Elegant/user_greeting.tmpl after/templates/Elegant/user_greeting.tmpl
+--- websvn/templates/Elegant/user_greeting.tmpl	2023-03-01 21:26:09.419062120 +0100
++++ after/templates/Elegant/user_greeting.tmpl	2023-03-01 21:23:22.339056281 +0100
+@@ -1,6 +1,5 @@
+     <div class="information">
+       <span>
+-        You can customize this message in 'templates/Elegant/user_greeting.tmpl' to tell your
+-        visitors what they'll find in your repositories.
++          [websvn:abouttext]
+       </span>
+     </div>

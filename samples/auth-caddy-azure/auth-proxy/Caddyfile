@@ -1,0 +1,42 @@
+{
+    order authenticate before respond
+    order authorize before basicauth
+
+    security {
+        oauth identity provider azure {
+            realm azure
+            driver azure
+            tenant_id {$AZURE_TENANT_ID}
+            client_id {$AZURE_CLIENT_ID}
+            client_secret {$AZURE_CLIENT_SECRET}
+            scopes openid email profile
+        }
+
+        authentication portal azureportal {
+            crypto key sign-verify {$SHARED_KEY}
+            enable identity provider azure
+
+            transform user {
+                match realm azure
+                action add role authp/user
+            }
+        }
+
+        authorization policy azurepolicy {
+            set auth url /authenticate/oauth2/azure/
+            crypto key sign-verify {$SHARED_KEY}
+            allow roles authp/user
+        }
+    }
+}
+
+{$DOMAIN_NAME} {
+    route /authportal* {
+        authenticate with azureportal
+    }
+
+    route {
+        authorize with azurepolicy
+        reverse_proxy websvn:80
+    }
+}

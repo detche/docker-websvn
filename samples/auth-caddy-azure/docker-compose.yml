@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  auth-proxy:
+    build: "./auth-proxy"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      DOMAIN_NAME: "secure.example.com"
+      AZURE_TENANT_ID: "your_azure_tenant_id"
+      AZURE_CLIENT_ID: "your_azure_client_id"
+      AZURE_CLIENT_SECRET: "your_azure_client_secret"
+      SHARED_KEY: "your_cookie_encryption_key"
+
+  websvn:
+    image: detche/websvn:2.8.1
+    volumes:
+      - /your/repo/location:/repos/myrepo:ro
+    environment:
+      ABOUT_TEXT: "Welcome here."
+
+volumes:
+  caddy_config:
+  caddy_data:
+    external: true
+

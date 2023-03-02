@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  https-proxy:
+    build: "./https-proxy"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      DOMAIN_NAME: "example.com"
+
+  websvn:
+    image: detche/websvn:2.8.1
+    volumes:
+      - /path/to/yourRepo:/repos/yourRepo:ro
+    environment:
+      ABOUT_TEXT: "Here you may find the source code of our software."
+
+volumes:
+  caddy_config:
+  caddy_data:
+    external: true
