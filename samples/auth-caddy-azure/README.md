@@ -22,3 +22,9 @@ Sample of Azure app registration that can be created to work with our setup:
   * Tenant ID: `Directory (tenant) id` value on registration's Overview page,
   * Client ID: `Application (client) id` value on registration's Overview page,
   * Client secret: The value of the secret you created.
+
+## Running the sample
+
+* Create the `caddy_data` volume for persistent HTTPS data: `sudo docker volume create caddy_data`,
+* Start the services: `sudo docker compose up -d`
+
