@@ -23,7 +23,7 @@
         }
 
         authorization policy azurepolicy {
-            set auth url /authenticate/oauth2/azure/
+            set auth url /authportal/oauth2/azure/
             crypto key sign-verify {$SHARED_KEY}
             allow roles authp/user
         }
